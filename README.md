@@ -44,3 +44,11 @@ Peacock 593099, HBO Max 61322. IDs can change; verify with `tools/list_apps.sh 1
 - Untested on real hardware as of this commit (the code lint-checks clean with BrighterScript).
   Expect some tweaking on first run.
 - The Android TV approach from tv-vibehack applies only if you add an Android/Google TV box.
+
+## Launching from your phone (works when the channel gets 403)
+On some firmware the channel can't launch other apps even with Network access = Enabled/Permissive
+(seen on the TCL 55R615, Roku OS 15.3). Use `phone-launcher/index.html` instead: same tiles, sent
+from your phone to the TV's ECP port. Keep Network access on Enabled or Permissive.
+- Save the file to your phone and open it in Chrome (file://), or serve it over plain http from a computer:
+  `cd phone-launcher && python3 -m http.server 8000`, then browse to `http://<computer-ip>:8000`.
+- It won't work from an https page (browsers block https -> http requests).

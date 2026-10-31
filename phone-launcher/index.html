@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeOS Remote</title>
+<style>
+ body{margin:0;background:#0b0b12;color:#fff;font-family:system-ui,sans-serif;padding:16px}
+ h1{margin:0 0 12px;font-size:22px}
+ .ip{display:flex;gap:8px;margin-bottom:16px}
+ input{flex:1;padding:10px;border-radius:8px;border:1px solid #444;background:#1a1a24;color:#fff;font-size:16px}
+ .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ .tile{border:0;border-radius:14px;padding:30px 8px;font-size:20px;font-weight:700}
+ .tile:active{outline:3px solid #fff}
+ .row{display:flex;gap:8px;margin-top:16px}
+ .row button{flex:1;padding:14px;border-radius:10px;border:0;background:#2a2a36;color:#fff;font-size:16px}
+ #status{margin-top:16px;color:#b8b8c6;min-height:1.4em}
+</style></head><body>
+<h1>VibeOS Remote</h1>
+<div class="ip"><input id="ip" inputmode="decimal" placeholder="TV IP, e.g. 10.0.0.33"></div>
+<div class="grid">
+    <button class="tile" data-id="12" data-name="Netflix" style="background:#E50914;color:#FFFFFF">Netflix</button>
+    <button class="tile" data-id="13" data-name="Prime Video" style="background:#00A8E1;color:#FFFFFF">Prime Video</button>
+    <button class="tile" data-id="61322" data-name="HBO Max" style="background:#5822B4;color:#FFFFFF">HBO Max</button>
+    <button class="tile" data-id="551012" data-name="Apple TV" style="background:#2A2A2E;color:#FFFFFF">Apple TV</button>
+    <button class="tile" data-id="2285" data-name="Hulu" style="background:#1CE783;color:#0B0B12">Hulu</button>
+    <button class="tile" data-id="593099" data-name="Peacock" style="background:#1B1B1F;color:#FFFFFF">Peacock</button>
+    <button class="tile" data-id="" data-name="Stremio" style="background:#7B5BF5;color:#FFFFFF">Stremio</button>
+</div>
+<div class="row">
+ <button data-key="Home">Home</button><button data-key="Back">Back</button>
+ <button data-key="Play">Play/Pause</button><button data-key="PowerOff">Power</button>
+</div>
+<div id="status"></div>
+<script>
+const ip=document.getElementById('ip'), st=document.getElementById('status');
+ip.value=localStorage.getItem('tvip')||'10.0.0.33';
+ip.addEventListener('change',()=>localStorage.setItem('tvip',ip.value.trim()));
+async function send(path,label){
+  st.textContent='Sending '+label+'...';
+  try{
+    // no-cors: the request is sent even though the TV sends no CORS headers (response is opaque).
+    await fetch('http://'+ip.value.trim()+':8060'+path,{method:'POST',mode:'no-cors'});
+    st.textContent='Sent: '+label+' (if nothing happens, check TV IP and Network access)';
+  }catch(e){st.textContent='Failed: '+e.message+'. Open this file locally or over http, not https.'}
+}
+document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>{
+  if(!b.dataset.id){st.textContent=b.dataset.name+' has no Roku app ID.';return}
+  send('/launch/'+b.dataset.id,b.dataset.name)});
+document.querySelectorAll('[data-key]').forEach(b=>b.onclick=()=>send('/keypress/'+b.dataset.key,b.dataset.key));
+</script></body></html>

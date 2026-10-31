@@ -17,7 +17,7 @@ Default tiles: Netflix, Prime Video, HBO Max, Apple TV, Hulu, Peacock, Stremio.
 Stremio has no official Roku app ID, so its tile shows a hint until you set one.
 
 ## Install (sideload)
-1. Build the zip: `./tools/build.sh` (or download `vibeos-launcher.zip` from wherever you built it).
+1. Build the zip: `./tools/build.sh` (or download the prebuilt `dist/vibeos-launcher.zip` from this repo on GitHub).
    Get the zip onto your phone if you'll use the phone browser.
 2. Open `http://<tv-ip>` (yours: `http://10.0.0.33`), sign in as `rokudev` with the dev password
    you set when enabling developer mode.

@@ -31,8 +31,8 @@ Stremio has no official Roku app ID, so its tile shows a hint until you set one.
   Right key sequence.
 - **Upload button does nothing on phone**: try desktop mode in Chrome, or use `tools/deploy.sh`.
 - **"Install Failure: Compilation Failed"**: the page prints the error; send it to me.
-- **Tile says "ECP returned 403/0"**: on the TV go to Settings > System > Advanced system settings >
-  Control by mobile apps > Network access, and set it to **Default** (or Permissive).
+- **Tile says "ECP returned 403"**: set Settings > System > Advanced system settings >
+  Control by mobile apps > Network access to **Enabled** (older firmware: Default/Permissive). **Limited blocks launching.**
 
 ## How launching works
 Selecting a tile POSTs to the TV's own ECP endpoint (`http://<tv-ip>:8060/launch/<appId>`) from

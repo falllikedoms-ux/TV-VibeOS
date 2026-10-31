@@ -4,7 +4,7 @@ end sub
 
 ' Launches another channel by POSTing to this device's own ECP endpoint.
 ' Requires Settings > System > Advanced system settings > Control by mobile apps
-' > Network access to be "Default" or "Permissive".
+' > Network access to be "Enabled" (older firmware: "Default"/"Permissive"), not "Limited".
 sub doLaunch()
     ips = []
     di = CreateObject("roDeviceInfo")
@@ -23,6 +23,6 @@ sub doLaunch()
         end if
     end for
 
-    msg = "ECP returned " + lastCode.toStr() + ". Check app ID, and that Network access is not 'Disabled'."
+    msg = "ECP returned " + lastCode.toStr() + ". Set Settings > System > Advanced > Control by mobile apps > Network access to Enabled (not Limited)."
     m.top.result = { ok: false, code: lastCode, message: msg }
 end sub

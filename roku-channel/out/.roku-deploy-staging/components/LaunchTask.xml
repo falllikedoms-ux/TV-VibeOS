@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="LaunchTask" extends="Task">
+    <interface>
+        <field id="appId" type="string" />
+        <field id="result" type="assocarray" />
+    </interface>
+    <script type="text/brightscript" uri="pkg:/components/LaunchTask.brs" />
+    <script type="text/brightscript" uri="pkg:/source/bslib.brs" />
+</component>

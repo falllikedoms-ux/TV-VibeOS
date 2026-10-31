@@ -1,0 +1,13 @@
+{
+  "title": "VibeOS",
+  "columns": 4,
+  "apps": [
+    { "name": "Netflix",      "id": "12",     "color": "0xE50914FF", "text": "0xFFFFFFFF" },
+    { "name": "Prime Video",  "id": "13",     "color": "0x00A8E1FF", "text": "0xFFFFFFFF" },
+    { "name": "HBO Max",      "id": "61322",  "color": "0x5822B4FF", "text": "0xFFFFFFFF" },
+    { "name": "Apple TV",     "id": "551012", "color": "0x2A2A2EFF", "text": "0xFFFFFFFF" },
+    { "name": "Hulu",         "id": "2285",   "color": "0x1CE783FF", "text": "0x0B0B12FF" },
+    { "name": "Peacock",      "id": "593099", "color": "0x1B1B1FFF", "text": "0xFFFFFFFF" },
+    { "name": "Stremio",      "id": "",       "color": "0x7B5BF5FF", "text": "0xFFFFFFFF" }
+  ]
+}
